@@ -11,32 +11,51 @@ import {
   ProfileExtraItem,
 } from './styles'
 import { GithubLogo, Buildings, Person } from 'phosphor-react'
+import { useEffect, useState } from 'react'
+import { api } from '../../../../lib/axios'
+
+interface Profile {
+  id: number
+  avatar_url: string
+  login: string
+  name: string
+  followers: number
+  company: string
+  bio: string
+  url: string
+}
 
 export function ProfileBox() {
+  const [profile, setProfile] = useState<Profile>({})
+  async function fetchProfile() {
+    const response = await api.get('users/lpalmeidabh')
+    setProfile(response.data)
+  }
+  useEffect(() => {
+    fetchProfile()
+  })
   return (
     <ProfileBoxContainer>
       <ProfileBoxContent>
-        <ProfileImage src="http://github.com/lpalmeidabh.png" alt="" />
+        <ProfileImage src={profile.avatar_url} alt={profile.name} />
         <ProfileInfo>
           <ProfileHeader>
-            <ProfileName>Lucas Almeida</ProfileName>
-            <ProfileUrl>BLABLABLA</ProfileUrl>
+            <ProfileName>{profile.name}</ProfileName>
+            <ProfileUrl href={profile.url} />
           </ProfileHeader>
-          <ProfileAbout>
-            Lorem ipsum dolor sit amet... lorem ipsum dolor sit amet bla bla
-            bla...
-          </ProfileAbout>
+          <ProfileAbout>{profile.bio}</ProfileAbout>
           <ProfileExtra>
             <ProfileExtraItem>
-              <GithubLogo size={24} /> lpalmeiadbh
+              <GithubLogo size={24} />
+              {profile.login}
             </ProfileExtraItem>
             <ProfileExtraItem>
               <Buildings size={24} />
-              Emprego
+              {profile.company}
             </ProfileExtraItem>
             <ProfileExtraItem>
               <Person size={24} />
-              32 Seguidores
+              {profile.followers} seguidores
             </ProfileExtraItem>
           </ProfileExtra>
         </ProfileInfo>

@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom'
+import { formatDate } from '../../../../utils/formatter'
 import {
   IssueBoxContainer,
   IssueBoxContent,
@@ -20,11 +21,11 @@ export function IssueBox({ id, title, date, description }: IssueBoxProps) {
       <IssueBoxContent>
         <IssueBoxHeader>
           <IssueTitle>
-            <NavLink to={''}> {title}</NavLink>
+            <NavLink to={`/post/${id}`}> {title}</NavLink>
           </IssueTitle>
-          <IssueDate>{date}</IssueDate>
+          <IssueDate>{formatDate(date)}</IssueDate>
         </IssueBoxHeader>
-        <IssueDescription>{description} ...</IssueDescription>
+        <IssueDescription>{description}</IssueDescription>
       </IssueBoxContent>
     </IssueBoxContainer>
   )

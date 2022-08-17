@@ -39,7 +39,7 @@ export const ProfileName = styled.div`
   line-height: 1.3;
 `
 
-export const ProfileUrl = styled.div`
+export const ProfileUrl = styled.a`
   color: ${(props) => props.theme.blue};
   font-weight: bold;
   text-transform: uppercase;
