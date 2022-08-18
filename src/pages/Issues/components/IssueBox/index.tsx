@@ -10,18 +10,18 @@ import {
 } from './styles'
 
 interface IssueBoxProps {
-  id: number
+  number: number
   title: string
   date: string
   description: string
 }
-export function IssueBox({ id, title, date, description }: IssueBoxProps) {
+export function IssueBox({ number, title, date, description }: IssueBoxProps) {
   return (
     <IssueBoxContainer>
       <IssueBoxContent>
         <IssueBoxHeader>
           <IssueTitle>
-            <NavLink to={`/post/${id}`}> {title}</NavLink>
+            <NavLink to={`post/${number}`}>{title}</NavLink>
           </IssueTitle>
           <IssueDate>{formatDate(date)}</IssueDate>
         </IssueBoxHeader>

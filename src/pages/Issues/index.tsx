@@ -35,7 +35,7 @@ export function Issues() {
           return (
             <IssueBox
               key={issue.number}
-              id={issue.number}
+              number={issue.number}
               title={issue.title}
               description={issue.body}
               date={issue.created_at}
